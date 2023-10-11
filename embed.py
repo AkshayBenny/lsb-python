@@ -41,7 +41,7 @@ def embed_message_in_image(image_path, message_in_binary):
 
         modified_pixels.append((r, g, b))
 
-    # Create new image with embedded data
+    # Create new image with embeded data
     img_rgb.putdata(modified_pixels)
     img_rgb.save('./static/images/stego_image.bmp')
 
