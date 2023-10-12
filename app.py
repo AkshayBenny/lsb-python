@@ -96,6 +96,20 @@ def binary_to_text(binary_string):
 
     return ''.join(char_list)
 
+# Test function to convert binary to string. 
+# DELETE ME AFTER
+def binary_to_text_test(binary_string, encoding='utf-8'):
+    print("Converting binary to string...")
+
+    # Convert the binary string to a bytes object
+    byte_data = int(binary_string, 2).to_bytes(
+        (len(binary_string) + 7) // 8, byteorder='big')
+
+    # Decode the bytes object using the specified encoding
+    text = byte_data.decode(encoding)
+
+    return text
+
 
 # ========== Main functions ===========
 
@@ -120,7 +134,7 @@ def extract_from_image():
     try:
         binary_message = extract_secret_message_from_image(
             './static/images/stego_image.bmp')
-        secret_message = binary_to_text(binary_message)
+        secret_message = binary_to_text_test(binary_message)
         print(secret_message)
     except ValueError as error:
         print("Something went wrong: ", error)
