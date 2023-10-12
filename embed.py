@@ -2,7 +2,7 @@ from PIL import Image
 
 
 def string_to_binary():
-
+    # Read the file
     f = open("message.txt", "r")
     secret_message = str(f.read())
 
@@ -21,6 +21,7 @@ def embed_message_in_image(image_path, message_in_binary):
     img = Image.open(image_path)
     img_rgb = img.convert('RGB')
     pixels = list(img_rgb.getdata())
+    print(pixels)
 
     # For storing the modified pixels
     new_pixels = []
@@ -28,6 +29,7 @@ def embed_message_in_image(image_path, message_in_binary):
     # Embed the message in the blue channel of the image
     message_index = 0
     for pixel in pixels:
+
         r, g, b = pixel
 
         # If there are still bits left to embed
