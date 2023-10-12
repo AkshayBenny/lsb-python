@@ -1,5 +1,4 @@
 from PIL import Image
-import ctypes
 
 
 # Utils
@@ -23,7 +22,6 @@ def embed_message_in_image(image_path, message_in_binary):
     img = Image.open(image_path)
     img_rgb = img.convert('RGB')
     pixels = list(img_rgb.getdata())
-    print(pixels)
 
     # For storing the modified pixels
     new_pixels = []
@@ -69,18 +67,18 @@ def extract_secret_message_from_image(image_path):
     message_binary_list = []
     pixel_index = 0
     for pixel in image_pixels:
-        if pixel_index <= 1000:
+        if pixel_index <= 10000:
             r, g, b = pixel
             b_binary = bin(b)[-1]
             message_binary_list.append(b_binary)
         pixel_index += 1
 
     message_binary = ''.join(message_binary_list)
-    print(message_binary)
+    # print(message_binary)
     return 0
 
-# ========== Main functions ===========
 
+# ========== Main functions ===========
 
 def embed_to_image():
     print("Embeding secret message to image...")
@@ -109,5 +107,5 @@ def extract_from_image():
 
 
 # Operation call
-# embed_to_image()
-extract_from_image()
+embed_to_image()
+# extract_from_image()
