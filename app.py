@@ -74,8 +74,27 @@ def extract_secret_message_from_image(image_path):
         pixel_index += 1
 
     message_binary = ''.join(message_binary_list)
-    # print(message_binary)
-    return 0
+    return message_binary
+
+
+def binary_to_text(binary_string):
+    print("Converting binary to string...")
+    char_list = []
+
+    count = 1
+    byte = ''
+    for bin in binary_string:
+        if count <= 8:
+            byte = byte + bin
+            count += 1
+        else:
+            count = 1
+
+            # Here we first convert the binary to decimal, then to its corresponding character
+            char_list.append(chr(int(byte, 2)))
+            byte = ''
+
+    return ''.join(char_list)
 
 
 # ========== Main functions ===========
@@ -99,13 +118,14 @@ def extract_from_image():
     print('Extracting from image...')
 
     try:
-        message = extract_secret_message_from_image(
+        binary_message = extract_secret_message_from_image(
             './static/images/stego_image.bmp')
-        print(message)
+        secret_message = binary_to_text(binary_message)
+        print(secret_message)
     except ValueError as error:
         print("Something went wrong: ", error)
 
 
 # Operation call
-embed_to_image()
-# extract_from_image()
+# embed_to_image()
+extract_from_image()
