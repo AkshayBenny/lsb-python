@@ -96,22 +96,6 @@ def binary_to_text(binary_string):
 
     return ''.join(char_list)
 
-# Test function to convert binary to string.
-# DELETE ME AFTER
-
-
-def binary_to_text_test(binary_string, encoding='utf-8'):
-    print("Converting binary to string...")
-
-    # Convert the binary string to a bytes object
-    byte_data = int(binary_string, 2).to_bytes(
-        (len(binary_string) + 7) // 8, byteorder='big')
-
-    # Decode the bytes object using the specified encoding
-    text = byte_data.decode(encoding)
-
-    return text
-
 
 def convert_string_to_groups_of_eight(input_string):
     # Padding to ensure the length is a multiple of 8
@@ -125,7 +109,19 @@ def convert_string_to_groups_of_eight(input_string):
     return groups_of_eight
 
 
+def clean_string(string):
+    characters_to_remove = "~><<?÷çÿãããÃÃÃÀÃÇÇÀÇÃÃããÃÃããÃãããããÃãÃããããÃÃÃÃãÃÃÃÃÃÃãããÃÃáÃî"
+    cleaned_string = string
+    for char in characters_to_remove:
+        cleaned_string = cleaned_string.replace(char, '')
+
+    translation_table = str.maketrans('', '', '÷çÿãÁ')
+    cleaned_string = cleaned_string.translate(translation_table)
+
+    return cleaned_string
+
 # ========== Main functions ===========
+
 
 def embed_to_image():
     print("Embeding secret message to image...")
@@ -154,7 +150,7 @@ def extract_from_image():
 
         for i in binary_list:
             secret_text += chr(int(i, 2))
-        print(secret_text)
+        print(clean_string(secret_text))
         # print(binary_message)
         # secret_message = binary_to_text_test(binary_message)
         # print(secret_message)
