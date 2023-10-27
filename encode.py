@@ -32,7 +32,6 @@ def embed_binary_in_image(image_path, binary_data):
             new_pixels.append(pixel)
         else:
             channel_binary = bin(b)[2:]
-            print(channel_binary)
             new_pixel = (r, g, int(int(
                 channel_binary[:-1] + binary_data["binary"][binary_message_read_index], 2)))
             new_pixels.append(new_pixel)
