@@ -1,3 +1,13 @@
+## Steganography using Least Bit Algorithm
+
+The Steganography Application is a Python-based project designed to explore the art of hiding information within images. Steganography is the practice of concealing secret data within seemingly innocuous files, making it a valuable technique for secure communication and data protection. In this application, users can encode text messages into images and later decode these messages back, ensuring confidentiality and privacy in digital communication.
+
+The following project includes the following features:
+
+1. Users can input text messages, and the application encodes this text within a chosen image using steganographic techniques. The encoded image appears unchanged to the naked eye but contains hidden information.
+
+2. The application provides a mechanism to extract and decode the hidden messages from previously encoded images. This ensures the recipients can retrieve and read the concealed information.
+
 ### Project structure
 
 ```
