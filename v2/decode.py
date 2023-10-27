@@ -3,6 +3,7 @@ from PIL import Image
 
 def text_decoder():
     print("Image decoding started...")
+    delimiter_found = False
     img_rgb = Image.open("./static/stego_image.bmp")
     pixels = list(img_rgb.getdata())
     binary_string = ''
@@ -20,8 +21,11 @@ def text_decoder():
     groups_of_eight = [binary_string[i:i+8]
                        for i in range(0, len(binary_string), 8)]
 
-    for byte in groups_of_eight[0:15]:
-        print(type(chr(int(byte, 2))))
+    for byte in groups_of_eight:
+        if delimiter_found:
+            break
         text_string += chr(int(byte, 2))
-
-    print(f"Decoded text from the image: {text_string}")
+        if "DELIMITTER" in text_string:
+            delimiter_found = True
+    secret_text = text_string.replace("DELIMITTER", " ")
+    print(f"Decoded text from the image: {secret_text}")

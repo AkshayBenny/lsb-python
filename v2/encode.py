@@ -3,7 +3,7 @@ from PIL import Image
 
 def text_encoder():
     secret_text = str(input("Enter secret text:"))
-    binary_data = text_to_binary(secret_text)
+    binary_data = text_to_binary(secret_text + "DELIMITTER")
     embed_binary_in_image("./static/skyrim.bmp", binary_data)
     print("Embedding completed successfully!")
 
@@ -36,8 +36,7 @@ def embed_binary_in_image(image_path, binary_data):
             new_pixel = (r, g, int(int(
                 channel_binary[:-1] + binary_data["binary"][binary_message_read_index], 2)))
             new_pixels.append(new_pixel)
-            print(
-                f"Appended {channel_binary} into the new pixels ->>> {new_pixel}")
+
         binary_message_read_index += 1
 
     img_rgb.putdata(new_pixels)
