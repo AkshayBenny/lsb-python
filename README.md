@@ -26,6 +26,12 @@ Project Root
 
 `Note:` The static folder will contain the image to be encoded as well as the output image generated
 
+### Requirements
+
+1. Git
+
+2. Python version 3 or higher
+
 ### Local Setup
 
 1. First clone the repository
@@ -44,8 +50,16 @@ python -m venv venv
 
 And run the following command to activate the virtual environment
 
+-   On MacOs and Linux
+
 ```bash
 source venv/bin/activate
+```
+
+-   On Windows
+
+```bash
+venv\Scripts\activate
 ```
 
 4. Install dependencies
